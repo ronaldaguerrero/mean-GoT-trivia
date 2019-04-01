@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Game Of Thrones</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src='/assets/js/custom.js'></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type ="text/javascript">
+	    $(document).ready(function (){
+
+	        var socket = io(); //1
+
+	        socket.on('greeting', function (data) { //4
+	            console.log(data.msg); //5
+	            socket.emit('thankyou', { msg: 'Thank you for connecting me! -Client' }); //6
+	        });
+	     })
+	</script>
+</head>
+<div id='temp' style='text-align: center'></div>
+<body background='/assets/img/GoT.jpg' style='background-size:cover; background-position: center; background-repeat: no-repeat;'>
+  <app-root></app-root>
+  
+  <div id='temp2' style='text-align: center'></div>
+  <canvas id="canvas" width="500" height="500" data-responsiveMinWidth="180" data-responsiveScaleHeight="true" onClick="startSpin();">
+    <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+  </canvas>
+  <script type="text/javascript">
+	    // Create winwheel as per normal.
+	    let theWheel = new Winwheel({
+	        'numSegments'  : 10,     // Specify number of segments.
+	        'textFontSize' : 28,    // Set font size as desired.
+	        'responsive'   : true,  // This wheel is responsive!
+	        'segments'     :        // Define segments including colour and text.
+	        [
+	            {'fillStyle' : '', 'text' : 'Bronn'},
+	            {'fillStyle' : '', 'text' : 'Brynden Tully'},
+	            {'fillStyle' : '', 'text' : 'Cersei'},
+	            {'fillStyle' : '', 'text' : 'The Hound'},
+	            {'fillStyle' : '', 'text' : 'Jaime Lannister'},
+	            {'fillStyle' : '', 'text' : 'Littlefinger'},
+	            {'fillStyle' : '', 'text' : 'Olenna Tyrell'},
+	            {'fillStyle' : '', 'text' : 'Renly Baratheon'},
+	            {'fillStyle' : '', 'text' : 'Tyrion'},
+	            {'fillStyle' : '', 'text' : 'Varys'}
+	        ],
+	        'animation' :
+	        {
+	            'type'     : 'spinToStop',
+	            'duration' : 5,
+	            'spins'    : 8,
+	 
+	            // Remember to do something after the animation has finished specify callback function.
+	            'callbackFinished' : 'alertPrize()',
+	 
+	            // During the animation need to call the drawTriangle() to re-draw the pointer each frame.
+	            'callbackAfter' : 'drawTriangle()'
+	        }
+	    });
+	 
+	    // This function called after the spin animation has stopped.
+	    function alertPrize()
+	    {
+	        // Call getIndicatedSegment() function to return pointer to the segment pointed to on wheel.
+	        let winningSegment = theWheel.getIndicatedSegment();
+	        localStorage.setItem('winningSegment', winningSegment.text);
+	    }
+	 
+	    // Function to draw pointer using code (like in a previous tutorial).
+	    drawTriangle();
+	 
+	    function drawTriangle()
+	    {
+	        // Get the canvas context the wheel uses.
+	        let ctx = theWheel.ctx;
+	 
+	        ctx.strokeStyle = 'black';     // Set line colour.
+	        ctx.fillStyle   = '#323232';     // Set fill colour.
+	        ctx.lineWidth   = 2;
+	        ctx.beginPath();              // Begin path.
+	        ctx.moveTo(220, 15);           // Move to initial position.
+	        ctx.lineTo(280, 15);           // Draw lines to make the shape.
+	        ctx.lineTo(250, 50);
+	        ctx.lineTo(221, 15);
+	        ctx.stroke();                 // Complete the path by stroking (draw lines).
+	        ctx.fill();                   // Then fill.
+	    }
+	    // -----------------------------------------------------------------
+	    // Called by the onClick of the canvas, starts the spinning.
+	    function startSpin()
+	    {
+	        // Stop any current animation.
+	        theWheel.stopAnimation(false);
+	        // Reset the rotation angle to less than or equal to 360 so spinning again
+	        // works as expected. Setting to modulus (%) 360 keeps the current position.
+	        theWheel.rotationAngle = theWheel.rotationAngle % 360;
+	        // Start animation.
+	        theWheel.startAnimation();
+	    }
+	</script>	
+</body>
+</html>

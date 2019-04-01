@@ -1,0 +1,10 @@
+<div style="overflow:scroll; height: 200px; text-align:center;">
+	<div *ngFor="let x of users; let i = index;" style="margin: 3px;">
+	   	<!-- <p>Index: {{i}}</p> -->
+	   	<h3>Name: {{x.name}} | Score: {{x.score}}</h3> 
+	   	<!-- <img [src]="x.img" (click)="cakeToShow(x._id)"> -->
+	   	<button [routerLink]= "['/GoT', x._id]">Load Game</button> |
+	   	<button (click)="deleteUser(x._id)">Off with their head</button>
+	   	<img [src]="x.img" (click)="info(i)">
+	</div>
+</div>

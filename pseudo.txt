@@ -1,0 +1,22 @@
+[done] // pull API data
+[done] // show 1 key and 1 value which is the correct answer
+[done] // display 3 incorrect answers for the same key (question)
+// add a spin the wheel to select category (key)
+// add a leader board for high score
+
+[done] // https://github.com/wsizoo/game-of-thrones-quotes
+
+[done] // get request for API, store answer
+// post for answers and check
+// post if answer is correct
+[done] // send error if incorrect
+
+// add login and reg
+// implement socket.io on multiple laptops
+// first user to click gets to answer question w/ 5 second timeout and point deduction
+
+// schema
+// user
+// create
+// delete
+// use?

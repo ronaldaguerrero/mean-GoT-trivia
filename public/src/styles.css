@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+body
+{
+    font-family: Trattatello, fantasy;
+}
+
+/* Do some css reset on selected elements */
+h1, p
+{
+    margin: 0;
+}
+
+/*h1 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 0.8em;
+}*/

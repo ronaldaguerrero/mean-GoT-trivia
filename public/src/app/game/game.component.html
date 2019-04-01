@@ -1,0 +1,36 @@
+<div style='text-align:center;'>
+	<button (click)='continuePlaying()'>Displayeth thee Question</button> | <button [routerLink]= "['/players']">Scoreboard</button>
+	<p>Score: {{score}}</p>
+	<h2 *ngIf="message == 'Correct! Spin the wheel...'" style='color: darkgreen;'>{{message}}</h2>
+	<h1 *ngIf="gameover" style='color: darkred;'>{{gameoverMsg}}</h1>
+	<h2 *ngIf="message != 'Correct! Spin the wheel...'" style='color: darkred;'>{{message}}</h2>
+
+	<!-- <div *ngIf='name'>
+		<h2>Question: Which character holds/held the title "{{titleOfCorrectAns}}"</h2>
+		<form (submit)='submitAns()'>
+		  	<input type='radio' name='name' value='0' [(ngModel)]='submit.choice'>{{choices[0]}}<br>
+		  	<input type='radio' name='name' value='1' [(ngModel)]='submit.choice'>{{choices[1]}}<br>
+		  	<input type='radio' name='name' value='2' [(ngModel)]='submit.choice'>{{choices[2]}}<br>
+		  	<input type='radio' name='name' value='3' [(ngModel)]='submit.choice'>{{choices[3]}}<br>
+		  	<input *ngIf='message == null' type="submit" value="Submit"/>
+		</form>	
+	</div> -->
+
+	<div *ngIf="show == true">
+		<h1>Which quote was said by "{{quoteData}}"</h1>
+			<form (submit)='submitQuoteAns()'>
+		  	<h2><input type='radio' name='name' value='0' [(ngModel)]='submitQuote.choice'>"{{quoteChoices[0]}}"<br>
+		  	<input type='radio' name='name' value='1' [(ngModel)]='submitQuote.choice'>"{{quoteChoices[1]}}"<br>
+		  	<input type='radio' name='name' value='2' [(ngModel)]='submitQuote.choice'>"{{quoteChoices[2]}}"<br>
+		  	<input type='radio' name='name' value='3' [(ngModel)]='submitQuote.choice'>"{{quoteChoices[3]}}"</h2><br>
+		  	<input *ngIf='message == null' type="submit" value="Submit"/>
+		</form>	
+	</div>
+</div>
+
+	<!-- <button (click)='getImage()'>Get Image Q</button>
+	<fieldset *ngIf='img'>
+		<p>{{img}}</p>
+		<img [src]='img' style='height: 100px; width: 100px;'>
+	</fieldset>
+	 -->
